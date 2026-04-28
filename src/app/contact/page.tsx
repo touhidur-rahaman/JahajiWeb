@@ -38,19 +38,19 @@ export default function ContactPage() {
             ))}
           </div>
           <form className="lg:col-span-7 rounded-3xl bg-sand p-8 md:p-12 border-hairline" onSubmit={(e) => e.preventDefault()}>
-            <h2 className="font-display text-3xl">Send us a note</h2>
-            <p className="mt-2 text-muted-foreground">We'll route it to the right desk.</p>
+            <h2 className="font-display text-3xl">{c.form.heading}</h2>
+            <p className="mt-2 text-muted-foreground">{c.form.subheading}</p>
             <div className="mt-8 grid gap-5 md:grid-cols-2">
-              <Field label="Your name" type="text" placeholder="Full name" />
-              <Field label="Email" type="email" placeholder="you@company.com" />
-              <Field label="Company" type="text" placeholder="Optional" className="md:col-span-2" />
+              <Field label={c.form.nameLabel} type="text" placeholder={c.form.namePlaceholder} />
+              <Field label={c.form.emailLabel} type="email" placeholder={c.form.emailPlaceholder} />
+              <Field label={c.form.companyLabel} type="text" placeholder={c.form.companyPlaceholder} className="md:col-span-2" />
               <div className="md:col-span-2">
-                <label className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Message</label>
-                <textarea rows={5} placeholder="Tell us about your shipping needs…" className="mt-2 w-full rounded-2xl bg-background border border-border px-5 py-4 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-ember/40 transition" />
+                <label className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{c.form.messageLabel}</label>
+                <textarea rows={5} placeholder={c.form.messagePlaceholder} className="mt-2 w-full rounded-2xl bg-background border border-border px-5 py-4 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-ember/40 transition" />
               </div>
             </div>
             <button type="submit" className="mt-8 inline-flex items-center gap-2 rounded-full bg-deep px-7 py-4 text-primary-foreground font-medium hover:brightness-110 transition">
-              Send message
+              {c.form.submit}
             </button>
           </form>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Ship, MapPin, ShoppingBag, ShieldCheck, Smartphone, Compass } from "lucide-react";
+import { ArrowUpRight, Ship, MapPin, ShoppingBag, ShieldCheck, Smartphone, Compass, Cloud, LayoutDashboard, Headphones, ClipboardList } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { motion } from "framer-motion";
@@ -15,9 +15,11 @@ export default function Home() {
       <Marquee />
       <Pillars />
       <Showcase />
-      <Numbers />
+      <AppFeatures />
+      {/* <Numbers /> */}
       <Workflow />
       <CTA />
+      <MapSection />
       <Footer />
     </main>
   );
@@ -330,6 +332,114 @@ function Showcase() {
   );
 }
 
+/* ------------------------------- APP FEATURES ------------------------------- */
+function AppFeatures() {
+  const { t } = useLang();
+  const af = t.appFeatures;
+  const icons = [Cloud, LayoutDashboard, Smartphone, ClipboardList];
+
+  return (
+    <section className="py-24 md:py-32 overflow-hidden bg-background">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <div className="text-center mb-20">
+          <h2 className="font-display text-4xl md:text-5xl mb-4 text-deep">{af.headline}</h2>
+          <p className="text-muted-foreground uppercase tracking-widest text-sm">{af.kicker}</p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-12 items-center">
+          {/* Left Features */}
+          <div className="space-y-16 lg:text-right order-2 lg:order-1">
+            {af.items.slice(0, 2).map((item, i) => {
+              const Icon = icons[i];
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex flex-col lg:items-end group"
+                >
+                  <div className="h-12 w-12 rounded-2xl bg-ember/10 flex items-center justify-center mb-6 group-hover:bg-ember/20 transition-colors">
+                    <Icon className="h-6 w-6 text-ember" />
+                  </div>
+                  <h3 className="font-display text-2xl mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-balance">
+                    {item.body}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Center Phone */}
+          <div className="relative flex justify-center order-1 lg:order-2">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full max-w-[280px] aspect-[1/2.1] bg-slate-900 rounded-[3rem] p-2.5 shadow-2xl border-4 border-slate-800"
+            >
+              {/* Screen */}
+              <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden bg-deep">
+                {/* Logo & Wheel background */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 opacity-20">
+                   <Ship className="w-32 h-32 text-white" strokeWidth={1} />
+                </div>
+                
+                {/* App UI Overlay */}
+                <div className="relative h-full flex flex-col items-center pt-12 p-4">
+                  <div className="w-24 h-6 bg-white/10 rounded-full mb-8 flex items-center justify-center text-[10px] text-white/50">
+                    English | Bangla
+                  </div>
+                  
+                  <div className="w-full space-y-3">
+                    {["Booking", "Tracking", "Purchasing", "Trading"].map((label, i) => (
+                      <div key={label} className="w-full bg-white/10 border border-white/10 rounded-xl p-3 flex items-center justify-between">
+                        <span className="text-xs text-white font-medium">{label}</span>
+                        <div className="w-5 h-5 rounded-full bg-white/10" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Decorative blobs */}
+            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-ember/10 rounded-full blur-3xl" />
+          </div>
+
+          {/* Right Features */}
+          <div className="space-y-16 order-3">
+            {af.items.slice(2, 4).map((item, i) => {
+              const Icon = icons[i + 2];
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: (i + 2) * 0.1 }}
+                  className="group"
+                >
+                  <div className="h-12 w-12 rounded-2xl bg-ember/10 flex items-center justify-center mb-6 group-hover:bg-ember/20 transition-colors">
+                    <Icon className="h-6 w-6 text-ember" />
+                  </div>
+                  <h3 className="font-display text-2xl mb-3">{item.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-balance">
+                    {item.body}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ------------------------------- NUMBERS ------------------------------- */
 function Numbers() {
   const { t } = useLang();
@@ -418,6 +528,38 @@ function CTA() {
               </Link>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------- MAP ------------------------------- */
+function MapSection() {
+  const { t } = useLang();
+  const m = t.map;
+
+  return (
+    <section className="py-24 md:py-32 text-foreground relative overflow-hidden" style={{ backgroundColor: "lab(95.4091% 1.08859 6.82088)" }}>
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+        <div className="mb-12">
+          <p className="text-xs uppercase tracking-[0.22em] text-ember mb-4">{m.kicker}</p>
+          <h2 className="font-display text-4xl md:text-5xl text-deep">{m.title}</h2>
+          <p className="mt-4 text-muted-foreground">{m.address}</p>
+        </div>
+        
+        <div className="relative w-full h-[450px] rounded-[2.5rem] overflow-hidden border-hairline shadow-elevated">
+          <iframe
+            src="https://maps.google.com/maps?q=Jahaji+Limited+Khulna&z=16&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Jahaji Limited Location"
+            className="contrast-115"
+          />
         </div>
       </div>
     </section>

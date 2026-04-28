@@ -109,6 +109,19 @@ export type Dictionary = {
     phone: string;
     email: string;
     address: string;
+    form: {
+      heading: string;
+      subheading: string;
+      nameLabel: string;
+      namePlaceholder: string;
+      emailLabel: string;
+      emailPlaceholder: string;
+      companyLabel: string;
+      companyPlaceholder: string;
+      messageLabel: string;
+      messagePlaceholder: string;
+      submit: string;
+    };
   };
   press: {
     kicker: string;
@@ -119,6 +132,16 @@ export type Dictionary = {
     contactHeading: string;
     contactBody: string;
     contactEmail: string;
+  };
+  appFeatures: {
+    kicker: string;
+    headline: string;
+    items: Array<{ title: string; body: string }>;
+  };
+  map: {
+    kicker: string;
+    title: string;
+    address: string;
   };
 };
 
@@ -327,6 +350,19 @@ export const en: Dictionary = {
     phone: "09639-707070",
     email: "info@jahajibd.com",
     address: "55 KDA Avenue (Level-9), Khulna 9100",
+    form: {
+      heading: "Send us a note",
+      subheading: "We'll route it to the right desk.",
+      nameLabel: "Your name",
+      namePlaceholder: "Full name",
+      emailLabel: "Email",
+      emailPlaceholder: "you@company.com",
+      companyLabel: "Company",
+      companyPlaceholder: "Optional",
+      messageLabel: "Message",
+      messagePlaceholder: "Tell us about your shipping needs…",
+      submit: "Send message",
+    },
   },
 
   // ── Press ─────────────────────────────────────────────────────────────────────
@@ -339,5 +375,34 @@ export const en: Dictionary = {
     contactHeading: "Press enquiries",
     contactBody: "For interviews, asset requests and press releases, contact our media team.",
     contactEmail: "press@jahajibd.com",
+  },
+
+  // ── App Features ─────────────────────────────────────────────────────────────
+  appFeatures: {
+    kicker: "Why Jahaji different?",
+    headline: "Jahaji is an unique app",
+    items: [
+      {
+        title: "Weather forecasts",
+        body: "Ship App users will be able to predict the inclement weather through the app",
+      },
+      {
+        title: "Dynamic Dashboard",
+        body: "The ship has a dynamic dashboard. It will get all your trip updates very easily",
+      },
+      {
+        title: "24/7 Customer support",
+        body: "We have skilled, trained and gentle staff. Who will give you 24/7 offline and online customer support",
+      },
+      {
+        title: "Monthly reports",
+        body: "Freezing to keep track of ship trips? Get daily, weekly and monthly reports on Jahaji app account of your current and past trips.",
+      },
+    ],
+  },
+  map: {
+    kicker: "Visit us",
+    title: "Contact with Jahaji",
+    address: "55 KDA Avenue (Level-9), Khulna 9100",
   },
 };
